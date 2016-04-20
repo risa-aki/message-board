@@ -6,12 +6,12 @@ class MessagesController < ApplicationController
     @messages = Message.all
   end
 
- def destroy
+  def destroy
     @message.destroy
     redirect_to root_path, notice: 'メッセージを削除しました'
   end
 
-def create
+  def create
     @message = Message.new(message_params)
     if @message.save
       redirect_to root_path , notice: 'メッセージを保存しました'
@@ -22,6 +22,7 @@ def create
       render 'index'
     end
   end
+  
   def edit
   end
   
@@ -34,10 +35,13 @@ def create
       render 'edit'
     end
   end
+
   private
+
   def message_params
     params.require(:message).permit(:name, :body, :age)
   end
+
   ## ここまでだよ
   def set_message
     @message = Message.find(params[:id])
